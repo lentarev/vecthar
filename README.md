@@ -1,5 +1,6 @@
 # eocc
 
+```text
 eocc/
 └── src/
     └── engine/
@@ -8,4 +9,4 @@ eocc/
         ├── assets/      // загрузчики шейдеров, glTF и пр.
         ├── renderer/    // OpenGL (и позже Vulkan)
         └── scene/       // сцена, объекты, компоненты
-        
+```
