@@ -57,8 +57,8 @@ endif()
 
 # Ищем все .cpp и .c файлы движка + glad
 file(GLOB_RECURSE ENGINE_SOURCES
-    src/engine/**/*.cpp
-    src/engine/**/*.c
+    src/engine/*.cpp
+    src/engine/*.c
     third_party/glad/src/glad.c
 )
 

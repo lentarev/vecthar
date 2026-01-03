@@ -15,7 +15,7 @@ public:
 
     void loop() const;
 
-    void cleanup() const;
+    void cleanUp() const;
 
 private:
     GLFWwindow* mWindow = nullptr;

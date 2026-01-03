@@ -1,18 +1,18 @@
 #include <memory>
-#include <engine/system/window/Window.h>
+#include <engine/Engine.h>
 #include <engine/base/logger/Logger.h>
 
 int main() {
-    const auto w = std::make_unique<Window>();
+    try {
+        const auto engine = std::make_unique<Engine>();
+        engine->init();
+        engine->run();
+        engine->cleanUp();
 
-    if (!w->init(640, 480, "OpenGL Test Window")) {
-        Logger::log(1, "%s error: Window init error\n", __FUNCTION__);
+    } catch (const std::exception& e) {
+        Logger::log(1, "Fatal error: %s\n", e.what());
         return -1;
     }
-
-    w->loop();
-
-    w->cleanup();
 
     return 0;
 }

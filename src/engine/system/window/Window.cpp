@@ -64,7 +64,7 @@ void Window::loop() const {
 /**
  * Cleanup
  */
-void Window::cleanup() const {
+void Window::cleanUp() const {
     Logger::log(1, "%s: Terminating Window\n", __FUNCTION__);
     glfwDestroyWindow(mWindow);
     glfwTerminate();
