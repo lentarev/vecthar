@@ -9,21 +9,14 @@
  * Constructor
  */
 Engine::Engine() {
-    _window = std::make_unique<Window>();
+    // 1. Оконная подсистема
+    _window = std::make_unique<Window>(640, 480, "OpenGL Test Window");
 }
-
-Engine::~Engine() = default;
 
 /**
- * Инициализация всех систем движка
+ * Destructor
  */
-void Engine::init() {
-    // Оконная подсистема
-    if (!_window->init(640, 480, "OpenGL Test Window")) {
-        // Выбрасываем исключение, на тот случай если оконная подсистема не смогла инициализироваться
-        throw std::runtime_error("Failed to initialize window subsystem");
-    }
-}
+Engine::~Engine() {}
 
 /**
  * Запуск главного цикла
@@ -31,11 +24,4 @@ void Engine::init() {
 void Engine::run() {
     // Запускаем цикл оконной подсистемы
     _window->loop();
-}
-
-/**
- * Освобождение всех использованных ресурсов движка
- */
-void Engine::cleanUp() {
-    _window->cleanUp();
 }

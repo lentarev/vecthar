@@ -3,16 +3,14 @@
 //
 
 #include "Window.h"
+#include <stdexcept>
 
-bool Window::init(const int width, const int height, const char* title) {
+/**
+ * Constructor
+ */
+Window::Window(const int width, const int height, const char* title) {
     int actualScreenWidth;
     int actualScreenHeight;
-
-    // 1. Инициализация GLFW
-    if (!glfwInit()) {
-        Logger::log(1, "%s: glfwInit() error\n", __FUNCTION__);
-        return false;
-    }
 
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 1);
@@ -21,25 +19,33 @@ bool Window::init(const int width, const int height, const char* title) {
     mWindow = glfwCreateWindow(width, height, title, nullptr, nullptr);
 
     if (!mWindow) {
-        Logger::log(1, "%s: Could not create window\n", __FUNCTION__);
-        glfwTerminate();
-        return false;
+        throw std::runtime_error("Failed to create GLFW window");
     }
+
+    // glfwDestroyWindow(mWindow);  // ← сначала уберём окно (чтобы не утекало)
+    // throw std::runtime_error("Тест: имитация ошибки в конструкторе Window");
 
     glfwGetFramebufferSize(mWindow, &actualScreenWidth, &actualScreenHeight);
     glfwMakeContextCurrent(mWindow);
 
     // 2. Инициализация GLAD
     if (!gladLoadGLLoader(reinterpret_cast<GLADloadproc>(glfwGetProcAddress))) {
-        Logger::log(1, "%s: Failed to initialize GLAD\n", __FUNCTION__);
-        return false;
+        glfwDestroyWindow(mWindow);  // убираем часть ресурса
+        throw std::runtime_error("Failed to initialize GLAD");
     }
 
     // Set viewport size
     glViewport(0, 0, actualScreenWidth, actualScreenHeight);
 
     Logger::log(1, "%s: Window successfully initialized\n", __FUNCTION__);
-    return true;
+}
+
+/**
+ * Desctructor
+ */
+Window::~Window() {
+    Logger::log(1, "%s: Terminating Window\n", __FUNCTION__);
+    glfwDestroyWindow(mWindow);
 }
 
 /**
@@ -59,13 +65,4 @@ void Window::loop() const {
         // poll events in a loop
         glfwPollEvents();
     }
-}
-
-/**
- * Cleanup
- */
-void Window::cleanUp() const {
-    Logger::log(1, "%s: Terminating Window\n", __FUNCTION__);
-    glfwDestroyWindow(mWindow);
-    glfwTerminate();
 }

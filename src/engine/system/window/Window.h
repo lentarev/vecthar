@@ -11,11 +11,14 @@
 
 class Window {
 public:
-    bool init(int width, int height, const char* title);
+    // Constructor
+    Window(const int width, const int height, const char* title);
 
+    // Destructor
+    ~Window();
+
+    // Loop
     void loop() const;
-
-    void cleanUp() const;
 
 private:
     GLFWwindow* mWindow = nullptr;
