@@ -9,6 +9,8 @@
 
 // Предварительное объявление классов
 class Window;
+class Shader;
+class Renderer;
 
 class Engine {
 public:
@@ -23,6 +25,12 @@ private:
 
     // 1. Оконная подсистема
     std::unique_ptr<Window> _window;
+
+    // 2. Подиситема Shader
+    std::unique_ptr<Shader> _shader;
+
+    // 3. Подиситема Renderer
+    std::unique_ptr<Renderer> _renderer;
 };
 
 #endif  // EOCC_ENGINE_H
