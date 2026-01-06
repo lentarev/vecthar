@@ -30,8 +30,14 @@ Engine::~Engine() {}
  * Запуск главного цикла
  */
 void Engine::run() {
-    // Чтение шейдеров
+    while (!glfwWindowShouldClose(_window->getGLFWWindow())) {
+        glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
+        glClear(GL_COLOR_BUFFER_BIT);
 
-    // Запускаем цикл оконной подсистемы
-    _window->loop();
+        // swap buffers
+        glfwSwapBuffers(_window->getGLFWWindow());
+
+        // poll events in a loop
+        glfwPollEvents();
+    }
 }

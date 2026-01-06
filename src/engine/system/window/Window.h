@@ -17,11 +17,11 @@ public:
     // Destructor
     ~Window();
 
-    // Loop
-    void loop() const;
+    // Возвращает указатель на GLFWwindow
+    GLFWwindow* getGLFWWindow() const;
 
 private:
-    GLFWwindow* mWindow = nullptr;
+    GLFWwindow* _window = nullptr;
 };
 
 #endif  // EOCC_WINDOW_H

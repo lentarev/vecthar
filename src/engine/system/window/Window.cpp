@@ -16,26 +16,29 @@ Window::Window(const int width, const int height, const char* title) {
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 1);
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
-    mWindow = glfwCreateWindow(width, height, title, nullptr, nullptr);
+    _window = glfwCreateWindow(width, height, title, nullptr, nullptr);
 
-    if (!mWindow) {
+    if (!_window) {
         throw std::runtime_error("Failed to create GLFW window");
     }
 
-    // glfwDestroyWindow(mWindow);  // ← сначала уберём окно (чтобы не утекало)
+    // glfwDestroyWindow(_window);  // ← сначала уберём окно (чтобы не утекало)
     // throw std::runtime_error("Тест: имитация ошибки в конструкторе Window");
 
-    glfwGetFramebufferSize(mWindow, &actualScreenWidth, &actualScreenHeight);
-    glfwMakeContextCurrent(mWindow);
+    glfwGetFramebufferSize(_window, &actualScreenWidth, &actualScreenHeight);
+    glfwMakeContextCurrent(_window);
 
     // 2. Инициализация GLAD
     if (!gladLoadGLLoader(reinterpret_cast<GLADloadproc>(glfwGetProcAddress))) {
-        glfwDestroyWindow(mWindow);  // убираем часть ресурса
+        glfwDestroyWindow(_window);  // убираем часть ресурса
         throw std::runtime_error("Failed to initialize GLAD");
     }
 
     // Set viewport size
     glViewport(0, 0, actualScreenWidth, actualScreenHeight);
+
+    // VSYNC
+    glfwSwapInterval(1);
 
     Logger::log(1, "%s: Window successfully initialized\n", __FUNCTION__);
 }
@@ -45,24 +48,12 @@ Window::Window(const int width, const int height, const char* title) {
  */
 Window::~Window() {
     Logger::log(1, "%s: Terminating Window\n", __FUNCTION__);
-    glfwDestroyWindow(mWindow);
+    glfwDestroyWindow(_window);
 }
 
 /**
- * Main Loop
+ * Возвращает указатель на GLFWwindow
  */
-void Window::loop() const {
-    // VSYNC
-    glfwSwapInterval(1);
-
-    while (!glfwWindowShouldClose(mWindow)) {
-        glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
-        glClear(GL_COLOR_BUFFER_BIT);
-
-        // swap buffers
-        glfwSwapBuffers(mWindow);
-
-        // poll events in a loop
-        glfwPollEvents();
-    }
+GLFWwindow* Window::getGLFWWindow() const {
+    return _window;
 }
