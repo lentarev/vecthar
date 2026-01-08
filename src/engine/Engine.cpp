@@ -26,7 +26,7 @@ static void keyCallback(GLFWwindow* window, int key, int scancode, int action, i
  */
 Engine::Engine() {
     // 1. Оконная подсистема
-    _window = std::make_unique<Window>(1280, 1024, "OpenGL Test Window");
+    _window = std::make_unique<Window>(800, 600, "OpenGL Test Window");
 
     // 2. Подиситема Shader
     _shader = std::make_unique<Shader>();
