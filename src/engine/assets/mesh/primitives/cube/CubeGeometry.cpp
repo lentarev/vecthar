@@ -1,6 +1,6 @@
-#include "CubePrimitive.h"
+#include "CubeGeometry.h"
 
-const float CubePrimitive::vertices[72] = {
+const float CubeGeometry::vertices[72] = {
     // Задняя грань (Z = -0.5)
     -0.5f, -0.5f, -0.5f,  // 0
     -0.5f, 0.5f, -0.5f,   // 1
@@ -38,7 +38,7 @@ const float CubePrimitive::vertices[72] = {
     0.5f, 0.5f, -0.5f    // 23
 };
 
-const unsigned int CubePrimitive::indices[36] = {
+const unsigned int CubeGeometry::indices[36] = {
     // Задняя
     0, 1, 2, 0, 2, 3,
     // Передняя
@@ -54,7 +54,7 @@ const unsigned int CubePrimitive::indices[36] = {
 
 };
 
-const float CubePrimitive::texCoords[48] = {
+const float CubeGeometry::texCoords[48] = {
     // Задняя грань
     0.0f, 0.0f,  // 0
     0.0f, 1.0f,  // 1
@@ -92,7 +92,7 @@ const float CubePrimitive::texCoords[48] = {
     1.0f, 0.0f   // 23
 };
 
-const float CubePrimitive::normals[108] = {
+const float CubeGeometry::normals[108] = {
     // Задняя грань (Z = -0.5) - вершины 0-3
     // Нормаль: (0, 0, -1)
     0.0f, 0.0f, -1.0f,  // 0
@@ -138,59 +138,59 @@ const float CubePrimitive::normals[108] = {
 };
 
 // Возвращаем указатель на начало массива
-const float* CubePrimitive::getVertexArray() {
+const float* CubeGeometry::getVertexArray() {
     return vertices;
 }
 
-const unsigned int* CubePrimitive::getIndexArray() {
+const unsigned int* CubeGeometry::getIndexArray() {
     return indices;
 }
 
-const float* CubePrimitive::getTexCoordArray() {
+const float* CubeGeometry::getTexCoordArray() {
     return texCoords;
 }
 
-const float* CubePrimitive::getNormalArray() {
+const float* CubeGeometry::getNormalArray() {
     return normals;
 }
 
 // Vertex -----------------------------------------
 // Возвращает количество вершин
-size_t CubePrimitive::getVertexFloatCount() {
+size_t CubeGeometry::getVertexFloatCount() {
     return sizeof(vertices) / sizeof(vertices[0]);
 }
 
 // Возвращает размер в байтах
-size_t CubePrimitive::getVertexByteSize() {
+size_t CubeGeometry::getVertexByteSize() {
     return sizeof(vertices);
 }
 
 // Indices -----------------------------------------
 // Возвращает количество индексов
-GLsizei CubePrimitive::getIndexCount() {
+GLsizei CubeGeometry::getIndexCount() {
     return sizeof(indices) / sizeof(indices[0]);
 }
 
 // Возвращает размер в байтах
-size_t CubePrimitive::getIndexByteSize() {
+size_t CubeGeometry::getIndexByteSize() {
     return sizeof(indices);
 }
 
 // Texture coordinates ------------------------------
 // Возвращает количество координат
-size_t CubePrimitive::getTexCoordCount() {
+size_t CubeGeometry::getTexCoordCount() {
     return sizeof(texCoords) / sizeof(texCoords[0]);
 }
 // Возвращает размер в байтах
-size_t CubePrimitive::getTexCoordByteSize() {
+size_t CubeGeometry::getTexCoordByteSize() {
     return sizeof(texCoords);
 }
 
 // Normals ------------------------------------------
-size_t CubePrimitive::getNormalCount() {
+size_t CubeGeometry::getNormalCount() {
     return sizeof(normals) / sizeof(normals[0]);
 }
 
-size_t CubePrimitive::getNormalByteSize() {
+size_t CubeGeometry::getNormalByteSize() {
     return sizeof(normals);
 }

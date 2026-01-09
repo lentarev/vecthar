@@ -2,15 +2,15 @@
 // Created by Egor Lentarev on 08.01.2026.
 //
 
-#ifndef EOCC_CUBE_MESH_H
-#define EOCC_CUBE_MESH_H
+#ifndef EOCC_CUBE_GEOMETRY_H
+#define EOCC_CUBE_GEOMETRY_H
 
 #include <glad/glad.h>
 #include <cstddef>
 
-class CubePrimitive {
+class CubeGeometry {
 private:
-    CubePrimitive() = delete;  //  Disable creation of instances.
+    CubeGeometry() = delete;  //  Disable creation of instances.
 
     static const float vertices[72];
     static const unsigned int indices[36];
@@ -40,4 +40,4 @@ public:
     static size_t getNormalByteSize();
 };
 
-#endif  // EOCC_CUBE_MESH_H
+#endif  // EOCC_CUBE_GEOMETRY_H

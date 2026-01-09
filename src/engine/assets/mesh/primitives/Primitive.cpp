@@ -1,5 +1,5 @@
 #include "Primitive.h"
-#include <engine/assets/mesh/primitives/cube/CubePrimitive.h>
+#include <engine/assets/mesh/primitives/cube/CubeGeometry.h>
 
 Primitive::Primitive() = default;
 
