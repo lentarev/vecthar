@@ -1,6 +1,6 @@
 #include "CubeGeometry.h"
 
-const float CubeGeometry::vertices[72] = {
+std::vector<float> CubeGeometry::_vertices = {
     // Задняя грань (Z = -0.5)
     -0.5f, -0.5f, -0.5f,  // 0
     -0.5f, 0.5f, -0.5f,   // 1
@@ -38,7 +38,7 @@ const float CubeGeometry::vertices[72] = {
     0.5f, 0.5f, -0.5f    // 23
 };
 
-const unsigned int CubeGeometry::indices[36] = {
+std::vector<unsigned int> CubeGeometry::_indices = {
     // Задняя
     0, 1, 2, 0, 2, 3,
     // Передняя
@@ -51,10 +51,10 @@ const unsigned int CubeGeometry::indices[36] = {
     16, 17, 18, 16, 18, 19,
     // Верхняя
     20, 21, 22, 20, 22, 23
-
+    //
 };
 
-const float CubeGeometry::texCoords[48] = {
+std::vector<float> CubeGeometry::_texCoords = {
     // Задняя грань
     0.0f, 0.0f,  // 0
     0.0f, 1.0f,  // 1
@@ -92,7 +92,7 @@ const float CubeGeometry::texCoords[48] = {
     1.0f, 0.0f   // 23
 };
 
-const float CubeGeometry::normals[108] = {
+std::vector<float> CubeGeometry::_normals = {
     // Задняя грань (Z = -0.5) - вершины 0-3
     // Нормаль: (0, 0, -1)
     0.0f, 0.0f, -1.0f,  // 0
@@ -134,63 +134,76 @@ const float CubeGeometry::normals[108] = {
     0.0f, 1.0f, 0.0f,  // 21
     0.0f, 1.0f, 0.0f,  // 22
     0.0f, 1.0f, 0.0f   // 23
-
 };
 
-// Возвращаем указатель на начало массива
-const float* CubeGeometry::getVertexArray() {
-    return vertices;
+// Vertex ======================================
+const std::vector<float>& CubeGeometry::getVertices() {
+    return _vertices;
 }
 
-const unsigned int* CubeGeometry::getIndexArray() {
-    return indices;
-}
-
-const float* CubeGeometry::getTexCoordArray() {
-    return texCoords;
-}
-
-const float* CubeGeometry::getNormalArray() {
-    return normals;
-}
-
-// Vertex -----------------------------------------
-// Возвращает количество вершин
+// Returns the number of vertices
 size_t CubeGeometry::getVertexFloatCount() {
-    return sizeof(vertices) / sizeof(vertices[0]);
+    return _vertices.size();
 }
 
-// Возвращает размер в байтах
+// Returns the size in bytes
 size_t CubeGeometry::getVertexByteSize() {
-    return sizeof(vertices);
+    if (_vertices.empty())
+        return 0;
+
+    return _vertices.size() * sizeof(_vertices[0]);
 }
 
-// Indices -----------------------------------------
-// Возвращает количество индексов
+// Indices ======================================
+const std::vector<unsigned int>& CubeGeometry::getIndices() {
+    return _indices;
+}
+
+// Returns the number of indices
 GLsizei CubeGeometry::getIndexCount() {
-    return sizeof(indices) / sizeof(indices[0]);
+    return _indices.size();
 }
 
-// Возвращает размер в байтах
+// Returns the size in bytes
 size_t CubeGeometry::getIndexByteSize() {
-    return sizeof(indices);
+    if (_indices.empty())
+        return 0;
+
+    return _indices.size() * sizeof(_indices[0]);
 }
 
-// Texture coordinates ------------------------------
-// Возвращает количество координат
+// Texture coordinates =============================
+const std::vector<float>& CubeGeometry::getTexCoords() {
+    return _texCoords;
+}
+
+// Returns the number of texture coordinates
 size_t CubeGeometry::getTexCoordCount() {
-    return sizeof(texCoords) / sizeof(texCoords[0]);
+    return _texCoords.size();
 }
-// Возвращает размер в байтах
+
+// Returns the size in bytes
 size_t CubeGeometry::getTexCoordByteSize() {
-    return sizeof(texCoords);
+    if (_texCoords.empty())
+        return 0;
+
+    return _texCoords.size() * sizeof(_texCoords[0]);
 }
 
-// Normals ------------------------------------------
+// Normals =========================================
+const std::vector<float>& CubeGeometry::getNormals() {
+    return _normals;
+}
+
+// Returns the number of normals
 size_t CubeGeometry::getNormalCount() {
-    return sizeof(normals) / sizeof(normals[0]);
+    return _normals.size();
 }
 
+// Returns the size in bytes
 size_t CubeGeometry::getNormalByteSize() {
-    return sizeof(normals);
+    if (_normals.empty())
+        return 0;
+
+    return _normals.size() * sizeof(_normals[0]);
 }

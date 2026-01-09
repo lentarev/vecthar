@@ -6,7 +6,10 @@ Primitive::Primitive() = default;
 MeshData Primitive::createCube() {
     MeshData data;
 
-    // data.positions = CubePrimitive::getVertexArray();
+    data.positions = CubeGeometry::getVertices();
+    data.indices = CubeGeometry::getIndices();
+    data.texCoords = CubeGeometry::getTexCoords();
+    data.normals = CubeGeometry::getNormals();
 
     return data;
 }
