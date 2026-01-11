@@ -14,23 +14,11 @@ public:
     explicit Mesh(const MeshData& data);
     ~Mesh();
 
-    // Vertex
-    size_t getVertexFloatCount();
-    size_t getVertexByteSize();
-
     // Indices
-    GLsizei getIndexCount();
-    size_t getIndexByteSize();
+    GLsizei getIndexCount() const;
 
-    // Texture coordinates
-    size_t getTexCoordCount();
-    size_t getTexCoordByteSize();
-
-    // Normals
-    size_t getNormalCount();
-    size_t getNormalByteSize();
-
-    GLuint getVAO();
+    // Return VAO
+    GLuint getVAO() const;
 
 private:
     GLuint _vao = 0;
@@ -39,12 +27,9 @@ private:
     GLuint _nbo = 0;
     GLuint _tbo = 0;
 
-    std::vector<float> _vertices;
     std::vector<unsigned int> _indices;
-    std::vector<float> _texCoords;
-    std::vector<float> _normals;
 
-    void uploadToGPU();
+    void uploadToGPU(const MeshData& data);
 };
 
 #endif  // EOCC_MESH_H

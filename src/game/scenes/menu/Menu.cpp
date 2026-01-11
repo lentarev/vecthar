@@ -5,6 +5,7 @@
 
 Menu::Menu() {
     MeshData cubeData = Primitive::createCube();
+    _cubeMesh = std::make_unique<Mesh>(cubeData);
 
     // 1
     // _cubeMesh = std::make_unique<CubeMesh>();
@@ -29,8 +30,8 @@ void Menu::update(float deltaTime) {
 
 void Menu::draw(Renderer& renderer) {
     // Рисуем куб через рендерер
-    // renderer.drawMesh(_cubeMesh, _cubeBuffer, _redMaterial, _transform1);
+    // renderer.drawMesh(_cubeMesh, _redMaterial, _transform1);
 
     // Даже как то так
-    // renderer.drawMesh(_cubeMesh2, _cubeBuffer, _cubeMaterial2, _transform2);
+    // renderer.drawMesh(_cubeMesh2, _cubeMaterial2, _transform2);
 }
