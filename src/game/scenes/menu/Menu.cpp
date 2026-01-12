@@ -4,12 +4,14 @@
 #include <engine/assets/mesh/primitives/Primitive.h>
 
 Menu::Menu() {
+    Transform _transform;
+    Material _cubeMaterial;
+
     MeshData cubeData = Primitive::createCube();
 
     // 1
     _cubeMesh = std::make_unique<Mesh>(cubeData);
-    // _cubeMaterial = std::make_unique<GoldMaterial>();
-    // _transform1 = std::make_unique<Transform>();
+    _cubeMaterial.baseColor = {1.0f, 0.0f, 0.0f};
 }
 
 Menu::~Menu() {}

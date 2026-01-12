@@ -8,6 +8,8 @@
 #include <memory>
 #include <engine/scene/base/SceneBase.h>
 #include <engine/assets/mesh/Mesh.h>
+#include <engine/assets/material/Material.h>
+#include <engine/base/structures/Transform.h>
 
 class Menu : public SceneBase {
 public:
@@ -19,6 +21,8 @@ public:
 
 private:
     std::unique_ptr<Mesh> _cubeMesh;
+    Material _cubeMaterial;
+    Transform _transform;
 };
 
 #endif  // EOCC_MENU_H

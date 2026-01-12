@@ -8,7 +8,7 @@
 #include <glm/gtc/matrix_transform.hpp>
 
 struct Material {
-    glm::vec3 baseColor = {1, 1, 1};
+    glm::vec3 baseColor = {1.0f, 1.0f, 1.0f};
     float roughness = 1.0f;
     // Later: enum Type { LIT, UNLIT, PBR, WIREFRAME };
 };
