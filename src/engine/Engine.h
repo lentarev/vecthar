@@ -10,7 +10,6 @@
 
 // Предварительное объявление классов
 class Window;
-class Shader;
 class Renderer;
 
 class Engine {
@@ -33,13 +32,10 @@ private:
     // 1. Оконная подсистема
     std::unique_ptr<Window> _window;
 
-    // 2. Подиситема Shader
-    std::unique_ptr<Shader> _shader;
-
-    // 3. Подиситема Renderer
+    // 2. Подиситема Renderer
     std::unique_ptr<Renderer> _renderer;
 
-    // 4. Подсистема сцен
+    // 3. Подсистема сцен
     std::unique_ptr<SceneBase> _currentScene;
 };
 

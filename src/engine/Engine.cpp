@@ -5,7 +5,6 @@
 #include "Engine.h"
 
 #include <engine/system/window/Window.h>
-#include <engine/assets/shader/Shader.h>
 #include <engine/renderer/Renderer.h>
 #include <game/scenes/menu/Menu.h>
 #include <game/scenes/level1/Level1.h>
@@ -28,10 +27,7 @@ Engine::Engine() {
     // 1. Оконная подсистема
     _window = std::make_unique<Window>(800, 600, "OpenGL Test Window");
 
-    // 2. Подиситема Shader
-    _shader = std::make_unique<Shader>();
-
-    // 3. Подиситема Renderer
+    // 2. Подиситема Renderer
     _renderer = std::make_unique<Renderer>();
 
     // Передаём указатель на этот Engine в окно GLFW

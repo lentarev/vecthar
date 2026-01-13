@@ -7,9 +7,12 @@
 
 #include <memory>
 #include <engine/scene/base/SceneBase.h>
-#include <engine/assets/mesh/Mesh.h>
 #include <engine/assets/material/Material.h>
 #include <engine/base/structures/Transform.h>
+
+// Forward declaration of classes
+class Mesh;
+class Renderer;
 
 class Menu : public SceneBase {
 public:

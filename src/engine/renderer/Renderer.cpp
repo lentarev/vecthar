@@ -3,7 +3,15 @@
 //
 
 #include "Renderer.h"
+#include <engine/assets/shader/Shader.h>
 
-Renderer::Renderer(/* args */) {}
+Renderer::Renderer() {
+    _shader = std::make_unique<Shader>();
+}
 
 Renderer::~Renderer() {}
+
+/**
+ * Renderer
+ */
+void Renderer::drawMesh(const Mesh& mesh, const Material& material, const glm::mat4& modelMatrix) {}
