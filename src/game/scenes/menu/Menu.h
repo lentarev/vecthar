@@ -19,13 +19,15 @@ public:
     Menu();
     ~Menu();
 
-    void update(float deltaTime) override;
+    void update(float deltaTime, float totalTime) override;
     void draw(Renderer& renderer) override;
 
 private:
     std::unique_ptr<Mesh> _cubeMesh;
     Material _cubeMaterial;
     Transform _transform;
+
+    float _totalTime = 0.0f;
 };
 
 #endif  // EOCC_MENU_H

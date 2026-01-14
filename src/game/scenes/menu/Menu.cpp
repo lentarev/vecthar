@@ -17,8 +17,8 @@ Menu::~Menu() {}
 /**
  * Update - logic update
  */
-void Menu::update(float deltaTime) {
-    // Empty for now
+void Menu::update(float deltaTime, float totalTime) {
+    _transform.rotation.y = glm::radians(45.0f) * totalTime;
 }
 
 void Menu::draw(Renderer& renderer) {

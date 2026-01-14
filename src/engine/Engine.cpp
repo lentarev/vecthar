@@ -64,9 +64,13 @@ void Engine::onKey(int key, int scancode, int action, int mods) {
  */
 void Engine::run() {
     double lastTime = glfwGetTime();
+    double totalTime = 0.0;  // absolute time of logic
     double accumulator = 0.0;
 
     glEnable(GL_DEPTH_TEST);
+    glDepthFunc(GL_LEQUAL);
+    glEnable(GL_CULL_FACE);
+    // glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);  // Wireframe for testing
 
     Camera mainCamera;
     mainCamera.setPosition({0.0f, 0.0f, 5.0f});
@@ -81,6 +85,7 @@ void Engine::run() {
         }
 
         accumulator += frameTime;
+        lastTime = currentTime;
 
         glfwPollEvents();
 
@@ -89,9 +94,10 @@ void Engine::run() {
         // --- Логика (фиксированный timestep) ---
         while (accumulator >= FIXED_DELTA_TIME) {
             if (_currentScene) {
-                _currentScene->update(static_cast<float>(FIXED_DELTA_TIME));
+                _currentScene->update(static_cast<float>(FIXED_DELTA_TIME), static_cast<float>(totalTime));
             }
 
+            totalTime += FIXED_DELTA_TIME;
             accumulator -= FIXED_DELTA_TIME;
         }
 
