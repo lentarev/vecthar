@@ -21,17 +21,29 @@ Thus, **eocc** evolved into a standalone engine — while still carrying the leg
 
 ## 📂 Project Structure
 
+The engine is structured as a header-only compatible C++ library with a clear separation between the core engine and the demo application:
+
 ```text
-src/
-├── engine/
-│   ├── base/          # Logger, Transform, etc.
-│   ├── camera/        # Camera class
-│   ├── renderer/      # Graphics conductor
-│   ├── scene/         # SceneBase and managers
-│   └── system/        # Window, Input
-├── game/
-│   └── scenes/        # Menu, Level1
-└── main.cpp
+eocc/
+├── demo/                 # Demo application (game example)
+│   ├── main.cpp          # Entry point
+│   ├── scenes/           # Game-specific scenes (Menu, Level1, etc.)
+│   └── shaders/          # GLSL shaders for the demo
+│
+├── include/eocc/         # Public API headers (installable)
+│   ├── Engine.h
+│   ├── base/
+│   ├── camera/
+│   ├── renderer/
+│   ├── scene/
+│   └── system/
+│
+└── src/eocc/             # Engine implementation
+    ├── Engine.cpp
+    ├── base/
+    ├── camera/
+    ├── renderer/
+    └── system/
 ```
 
 ## 🛠️ Build
