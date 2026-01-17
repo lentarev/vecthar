@@ -15,6 +15,7 @@
 // Forward declaration of classes
 class Mesh;
 class Renderer;
+class Shader;
 
 class Menu : public SceneBase {
 public:
@@ -27,6 +28,7 @@ public:
 
 private:
     std::unique_ptr<Mesh> _cubeMesh;
+    std::unique_ptr<Shader> _shader;
     Material _cubeMaterial;
     Transform _transform;
 };

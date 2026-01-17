@@ -7,11 +7,15 @@
 #include <eocc/assets/mesh/primitives/Primitive.h>
 #include <eocc/assets/mesh/Mesh.h>
 #include <eocc/renderer/Renderer.h>
+#include <eocc/assets/shader/Shader.h>
 
 #include "scenes/menu/Menu.h"
 
 // Constructor
 Level1::Level1() {
+    _shader = std::make_unique<Shader>();
+    _shader->createProgram(_shader->read("./shaders/basic.vert"), _shader->read("./shaders/basic.frag"));
+
     MeshData cubeData = Primitive::createCube();
 
     _cubeMesh = std::make_unique<Mesh>(cubeData);
@@ -39,6 +43,8 @@ void Level1::update(float deltaTime, float totalTime) {
 }
 
 void Level1::draw(Renderer& renderer) {
+    renderer.useShaderProgram(_shader->getProgram());
+
     // Drawing a cube using a renderer
     renderer.drawMesh(*_cubeMesh, _cubeMaterial, _transform.getModelMatrix());
 }

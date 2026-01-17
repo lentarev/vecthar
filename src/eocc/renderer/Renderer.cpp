@@ -3,14 +3,12 @@
 //
 
 #include <eocc/renderer/Renderer.h>
-#include <eocc/assets/shader/Shader.h>
 #include <eocc/assets/mesh/Mesh.h>
 #include <eocc/camera/Camera.h>
 
 Renderer::Renderer() {
-    _shader = std::make_unique<Shader>();
-
-    _shader->createProgram(_shader->read("./shaders/shaders/basic.vert"), _shader->read("./shaders/shaders/basic.frag"));
+    // _shader = std::make_unique<Shader>();
+    // _shader->createProgram(_shader->read("./shaders/basic.vert"), _shader->read("./shaders/basic.frag"));
 }
 
 Renderer::~Renderer() {}
@@ -28,6 +26,10 @@ void Renderer::beginFrame(const Camera& camera, float aspectRatio) {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 }
 
+void Renderer::useShaderProgram(GLuint program) {
+    _program = program;
+}
+
 /**
  * Renderer
  */
@@ -35,19 +37,19 @@ void Renderer::drawMesh(const Mesh& mesh, const Material& material, const glm::m
     if (!_frameBegun)
         return;
 
-    glUseProgram(_shader->getProgram());
+    glUseProgram(_program);
 
     // Matrix
-    GLuint modelLoc = glGetUniformLocation(_shader->getProgram(), "u_Model");
-    GLuint viewLoc = glGetUniformLocation(_shader->getProgram(), "u_View");
-    GLuint projLoc = glGetUniformLocation(_shader->getProgram(), "u_Proj");
+    GLuint modelLoc = glGetUniformLocation(_program, "u_Model");
+    GLuint viewLoc = glGetUniformLocation(_program, "u_View");
+    GLuint projLoc = glGetUniformLocation(_program, "u_Proj");
 
     glUniformMatrix4fv(modelLoc, 1, GL_FALSE, &modelMatrix[0][0]);
     glUniformMatrix4fv(viewLoc, 1, GL_FALSE, &_viewMatrix[0][0]);
     glUniformMatrix4fv(projLoc, 1, GL_FALSE, &_projectionMatrix[0][0]);
 
     // Material: color
-    GLuint colorLoc = glGetUniformLocation(_shader->getProgram(), "u_BaseColor");
+    GLuint colorLoc = glGetUniformLocation(_program, "u_BaseColor");
     glUniform3fv(colorLoc, 1, &material.baseColor[0]);
 
     // Draw

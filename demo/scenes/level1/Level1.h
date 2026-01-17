@@ -12,8 +12,10 @@
 #include <eocc/assets/material/Material.h>
 #include <eocc/base/structures/Transform.h>
 
+// Forward declaration of classes
 class Mesh;
 class Renderer;
+class Shader;
 
 class Level1 : public SceneBase {
 public:
@@ -26,6 +28,7 @@ public:
 
 private:
     std::unique_ptr<Mesh> _cubeMesh;
+    std::unique_ptr<Shader> _shader;
     Material _cubeMaterial;
     Transform _transform;
 };

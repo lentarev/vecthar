@@ -5,12 +5,12 @@
 #ifndef EOCC_RENDERER_H
 #define EOCC_RENDERER_H
 
+#include <glad/glad.h>
 #include <memory>
 #include <glm/gtc/matrix_transform.hpp>
 #include <eocc/assets/material/Material.h>
 
 // Forward declaration of classes
-class Shader;
 class Mesh;
 class Camera;
 
@@ -19,16 +19,22 @@ public:
     Renderer();
     ~Renderer();
 
-    // Begin frame
+    /// Begin frame
     void beginFrame(const Camera& camera, float aspectRatio);
 
+    /// @brief Draw mesh
+    /// @param mesh
+    /// @param material
+    /// @param modelMatrix
     void drawMesh(const Mesh& mesh, const Material& material, const glm::mat4& modelMatrix);
 
-    // End frame (optional)
+    /// End frame (optional)
     void endFrame();
 
+    void useShaderProgram(GLuint program);
+
 private:
-    std::unique_ptr<Shader> _shader;
+    GLuint _program = 0;
 
     glm::mat4 _viewMatrix;
     glm::mat4 _projectionMatrix;

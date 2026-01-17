@@ -99,7 +99,7 @@ file(GLOB_RECURSE DEMO_SOURCES
 )
 
 # Копируем шейдеры в build-директорию
-file(COPY demo/shaders DESTINATION ${CMAKE_BINARY_DIR}/shaders)
+file(COPY demo/shaders DESTINATION ${CMAKE_BINARY_DIR}/)
 
 # Цель демо
 add_executable(eocc_demo ${DEMO_SOURCES})
