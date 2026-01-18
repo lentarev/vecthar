@@ -30,3 +30,4 @@ Then run:
 cmake -B build -G Ninja
 cmake --build build
 ./build/eocc_demo
+```
