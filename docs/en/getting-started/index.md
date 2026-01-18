@@ -1,5 +1,3 @@
-# eocc engine
-
 [<= Back](../) 
 
 # Getting Started
