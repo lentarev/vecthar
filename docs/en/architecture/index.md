@@ -86,16 +86,17 @@ To use eocc in your own project:
 ```cpp
 class MyScene : public eocc::SceneBase {
 public:
-    void init(eocc::Engine* engine) override {
+    // Constructor
+    MyScene() {
         // Load shaders, meshes, etc.
     }
 
-    void update(float dt, float t) override {
+    void update(float deltaTime, float totalTime) override {
         // Game logic
     }
 
-    void render() override {
-        engine->getRenderer().submit(mesh, shader);
+    void draw(eocc::Renderer& renderer) override {
+        // Drawing a mesh using a renderer
     }
 };
 

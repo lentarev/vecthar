@@ -86,16 +86,17 @@ eocc/
 ```cpp
 class MyScene : public eocc::SceneBase {
 public:
-    void init(eocc::Engine* engine) override {
+    // Constructor
+    MyScene() {
         // Загрузка шейдеров, мешей
     }
 
-    void update(float dt, float t) override {
+    void update(float deltaTime, float totalTime) override {
         // Логика
     }
 
-    void render() override {
-        engine->getRenderer().submit(mesh, shader);
+    void draw(eocc::Renderer& renderer) override {
+        // Рисование меша с помощью рендерера
     }
 };
 
