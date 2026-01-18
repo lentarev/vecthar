@@ -24,3 +24,9 @@ cmake -B build -G Ninja
 cmake --build build
 ./build/eocc_demo
 ```
+
+## 📚 Документация
+
+- [1. Начало работы](./getting-started/)
+- [2. Архитектура](./architecture/)
+- [3. Учебные примеры](./tutorials/)
