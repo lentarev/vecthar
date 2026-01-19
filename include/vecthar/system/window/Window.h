@@ -5,8 +5,6 @@
 #ifndef VECTHAR_WINDOW_H
 #define VECTHAR_WINDOW_H
 
-// #include <vecthar/base/OpenGLTypes.h>
-
 struct GLFWwindow;  // ← forward declaration
 
 namespace vecthar {
@@ -23,9 +21,6 @@ public:
 
     // Destructor
     ~Window();
-
-    // Returns a pointer to GLFWwindow
-    // GLFWwindow* getGLFWWindow() const;
 
     // Returns the current window width (in pixels)
     int getWidth() const;
