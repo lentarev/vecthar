@@ -2,7 +2,7 @@
 
 # Архитектура
 
-Движок **eocc** построен вокруг трёх ключевых принципов:
+Движок **Vecthar** построен вокруг трёх ключевых принципов:
 
 1. **Прозрачность** — никаких скрытых систем; всё можно прочитать и понять.
 2. **Модульность** — каждая часть (сцена, рендерер, камера) заменяема.
@@ -32,7 +32,7 @@
 - Привязку шейдеров,
 - Отправку геометрии в GPU.
 
-> В eocc нет «рендер-графа» или сложных пайплайнов — только прямой вызов OpenGL. Это даёт полный контроль.
+> В Vecthar нет «рендер-графа» или сложных пайплайнов — только прямой вызов OpenGL. Это даёт полный контроль.
 
 ### `Camera`
 Реализует:
@@ -54,13 +54,13 @@
 ## Структура проекта
 
 ```text
-eocc/
+vecthar/
 ├── demo/                 # Demo application (game example)
 │   ├── main.cpp          # Entry point
 │   ├── scenes/           # Game-specific scenes (Menu, Level1, etc.)
 │   └── shaders/          # GLSL shaders for the demo
 │
-├── include/eocc/         # Public API headers (installable)
+├── include/vecthar/      # Public API headers (installable)
 │   ├── Engine.h
 │   ├── base/
 │   ├── camera/
@@ -68,7 +68,7 @@ eocc/
 │   ├── scene/
 │   └── system/
 │
-└── src/eocc/             # Engine implementation
+└── src/vecthar/          # Engine implementation
     ├── Engine.cpp
     ├── base/
     ├── camera/
@@ -76,15 +76,15 @@ eocc/
     └── system/
 ```
 
-Чтобы использовать eocc в своём проекте:
-1. Скопируй `include/eocc/` в свой проект,
-2. Слинкуй с `libeocc_engine.a` (или добавь исходники),
+Чтобы использовать Vecthar в своём проекте:
+1. Скопируй `include/vecthar/` в свой проект,
+2. Слинкуй с `libvecthar_engine.a` (или добавь исходники),
 3. Наследуй `SceneBase` и передай экземпляр в `Engine::setCurrentScene()`.
 
 ## Пример: создание сцены
 
 ```cpp
-class MyScene : public eocc::SceneBase {
+class MyScene : public vecthar::SceneBase {
 public:
     // Constructor
     MyScene() {
@@ -95,7 +95,7 @@ public:
         // Логика
     }
 
-    void draw(eocc::Renderer& renderer) override {
+    void draw(vecthar::Renderer& renderer) override {
         // Рисование меша с помощью рендерера
     }
 };
@@ -109,12 +109,12 @@ int main() {
     }
 
     try {
-        const auto engine = std::make_unique<eocc::Engine>();
+        const auto engine = std::make_unique<vecthar::Engine>();
         engine->setCurrentScene(std::make_unique<Menu>());
         engine->run();
 
     } catch (const std::exception& e) {
-        eocc::Logger::log(1, "Fatal error: %s\n", e.what());
+        vecthar::Logger::log(1, "Fatal error: %s\n", e.what());
         return -1;
     }
 

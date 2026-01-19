@@ -2,7 +2,7 @@
 
 # Architecture
 
-The **eocc** engine is built around three core principles:
+The **Vecthar** engine is built around three core principles:
 
 1. **Transparency** — no hidden systems; everything can be read and understood.
 2. **Modularity** — every component (scene, renderer, camera) is replaceable.
@@ -32,7 +32,7 @@ Responsible for:
 - Binding shaders,
 - Submitting geometry to the GPU.
 
-> eocc has no render graph or complex pipelines — only direct OpenGL calls. This gives you full control.
+> Vecthar has no render graph or complex pipelines — only direct OpenGL calls. This gives you full control.
 
 ### `Camera`
 Implements:
@@ -54,13 +54,13 @@ Implements:
 ## Project Structure
 
 ```text
-eocc/
+vecthar/
 ├── demo/                 # Demo application (game example)
 │   ├── main.cpp          # Entry point
 │   ├── scenes/           # Game-specific scenes (Menu, Level1, etc.)
 │   └── shaders/          # GLSL shaders for the demo
 │
-├── include/eocc/         # Public API headers (installable)
+├── include/vecthar/      # Public API headers (installable)
 │   ├── Engine.h
 │   ├── base/
 │   ├── camera/
@@ -68,7 +68,7 @@ eocc/
 │   ├── scene/
 │   └── system/
 │
-└── src/eocc/             # Engine implementation
+└── src/vecthar/          # Engine implementation
     ├── Engine.cpp
     ├── base/
     ├── camera/
@@ -76,15 +76,15 @@ eocc/
     └── system/
 ```
 
-To use eocc in your own project:
-1. Copy `include/eocc/` into your project,
-2. Link against `libeocc_engine.a` (or include the source files directly),
+To use Vecthar in your own project:
+1. Copy `include/vecthar/` into your project,
+2. Link against `libvecthar_engine.a` (or include the source files directly),
 3. Inherit from `SceneBase` and pass an instance to `Engine::setCurrentScene()`.
 
 ## Example: Creating a Scene
 
 ```cpp
-class MyScene : public eocc::SceneBase {
+class MyScene : public vecthar::SceneBase {
 public:
     // Constructor
     MyScene() {
@@ -95,7 +95,7 @@ public:
         // Game logic
     }
 
-    void draw(eocc::Renderer& renderer) override {
+    void draw(vecthar::Renderer& renderer) override {
         // Drawing a mesh using a renderer
     }
 };
@@ -109,12 +109,12 @@ int main() {
     }
 
     try {
-        const auto engine = std::make_unique<eocc::Engine>();
+        const auto engine = std::make_unique<vecthar::Engine>();
         engine->setCurrentScene(std::make_unique<Menu>());
         engine->run();
 
     } catch (const std::exception& e) {
-        eocc::Logger::log(1, "Fatal error: %s\n", e.what());
+        vecthar::Logger::log(1, "Fatal error: %s\n", e.what());
         return -1;
     }
 

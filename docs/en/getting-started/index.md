@@ -2,7 +2,7 @@
 
 # Getting Started
 
-The **eocc** game engine is in an early stage of development, but from the very beginning it has been designed with a key principle in mind: **cross-platform support**.
+The **Vecthar** game engine is in an early stage of development, but from the very beginning it has been designed with a key principle in mind: **cross-platform support**.
 
 Currently supported platforms:
 - **Linux** (development is done on Ubuntu 24.04),
@@ -29,5 +29,5 @@ Then run:
 ```bash
 cmake -B build -G Ninja
 cmake --build build
-./build/eocc_demo
+./build/vecthar_demo
 ```

@@ -1,10 +1,10 @@
 [🇷🇺 Русский](../ru/) | [🇬🇧 English](./)
 
-# eocc engine
+# Vecthar engine
 
 A lightweight, clear, and C++-centric 3D game engine for developers who value **control**, **understanding**, and **simplicity**.
 
-eocc is not a black box. It’s a tool built to be read, understood, and extended — from shaders to scene management, all in modern C++.
+Vecthar is not a black box. It’s a tool built to be read, understood, and extended — from shaders to scene management, all in modern C++.
 
 ## ✨ Key Features
 
@@ -18,11 +18,11 @@ eocc is not a black box. It’s a tool built to be read, understood, and extende
 ## 🚀 Getting Started
 
 ```bash
-git clone https://github.com/lentarev/eocc.git
-cd eocc
+git clone https://github.com/lentarev/vecthar.git
+cd vecthar
 cmake -B build -G Ninja
 cmake --build build
-./build/eocc_demo
+./build/vecthar_demo
 ```
 
 ## 📚 Documentation
