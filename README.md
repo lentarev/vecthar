@@ -1,16 +1,9 @@
-# eocc engine
+# Vecthar engine
 
-📚 **Documentation**: [English](https://lentarev.github.io/eocc/en/) | [Русский](https://lentarev.github.io/eocc/ru/)
+📚 **Documentation**: [English](https://lentarev.github.io/vecthar/en/) | [Русский](https://lentarev.github.io/vecthar/ru/)
 
 A minimal, educational C++/OpenGL game engine built from scratch.  
 Designed for learning graphics programming, engine architecture, and real-time simulation.
-
-You might wonder: why the name "eocc"?  
-It stands for **"Epoch of Clashes Client"** — the title of the game I originally started (and continue to develop).  
-
-Initially, the project was structured as the client-side component of that game. However, as the codebase grew, I made a deliberate decision to separate the core engine functionality from the game-specific logic.  
-
-Thus, **eocc** evolved into a standalone engine — while still carrying the legacy of its origins.
 
 ## 🚀 Features
 
@@ -26,13 +19,13 @@ Thus, **eocc** evolved into a standalone engine — while still carrying the leg
 The engine is structured as a header-only compatible C++ library with a clear separation between the core engine and the demo application:
 
 ```text
-eocc/
+vecthar/
 ├── demo/                 # Demo application (game example)
 │   ├── main.cpp          # Entry point
 │   ├── scenes/           # Game-specific scenes (Menu, Level1, etc.)
 │   └── shaders/          # GLSL shaders for the demo
 │
-├── include/eocc/         # Public API headers (installable)
+├── include/vecthar/      # Public API headers (installable)
 │   ├── Engine.h
 │   ├── base/
 │   ├── camera/
@@ -40,7 +33,7 @@ eocc/
 │   ├── scene/
 │   └── system/
 │
-└── src/eocc/             # Engine implementation
+└── src/vecthar/          # Engine implementation
     ├── Engine.cpp
     ├── base/
     ├── camera/
@@ -62,11 +55,11 @@ sudo apt install cmake ninja-build libgl1-mesa-dev xorg-dev
 ```
 
 ```bash
-git clone https://github.com/lentarev/eocc.git
-cd eocc
+git clone https://github.com/lentarev/vecthar.git
+cd vecthar
 cmake -B build -G Ninja
 cmake --build build
-./build/eocc_demo
+./build/vecthar_demo
 ```
 
 ## 📜 License
