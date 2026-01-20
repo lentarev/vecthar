@@ -8,9 +8,6 @@
 #include <vecthar/renderer/Renderer.h>
 #include <vecthar/camera/Camera.h>
 
-// #include "scenes/menu/Menu.h"
-// #include "scenes/level1/Level1.h"
-
 #include <GLFW/glfw3.h>
 #include <iostream>
 
@@ -26,6 +23,11 @@ namespace vecthar {
 
 /// Constructor
 Engine::Engine() {
+    // Initialization (GLFW)
+    if (!glfwInit()) {
+        throw std::runtime_error("Failed to initialize GLFW");
+    }
+
     // 1. Window subsystem
     _window = std::make_unique<Window>(800, 600, "OpenGL Test Window");
 
@@ -37,13 +39,13 @@ Engine::Engine() {
 
     // Set callback
     glfwSetKeyCallback(_window->getGLFWWindow(), keyCallback);
-
-    // Let's start with the menu
-    // _currentScene = std::make_unique<Menu>();
 }
 
 /// Destructor
-Engine::~Engine() {}
+Engine::~Engine() {
+    // Freeing up all resources associated with GLFW
+    glfwTerminate();
+}
 
 /// Handles keyboard input events.
 void Engine::onKey(int key, int scancode, int action, int mods) {

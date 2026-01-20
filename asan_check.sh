@@ -25,6 +25,6 @@ cmake -S . -B build/asan -G Ninja \
 cmake --build build/asan
 
 echo "🔍 Запуск..."
-ASAN_OPTIONS=detect_leaks=1 ./build/asan/eocc
+cd build/asan && ASAN_OPTIONS=detect_leaks=1 ./vecthar_demo
 
 echo "✅ Утечек не обнаружено!"
