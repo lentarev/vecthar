@@ -14,6 +14,10 @@ Renderer::Renderer() {}
 
 Renderer::~Renderer() {}
 
+void Renderer::useShaderProgram(GLuint program) {
+    _program = program;
+}
+
 /**
  * Begin frame
  */
@@ -27,8 +31,11 @@ void Renderer::beginFrame(const Camera& camera, float aspectRatio) {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 }
 
-void Renderer::useShaderProgram(GLuint program) {
-    _program = program;
+/**
+ * End frame
+ */
+void Renderer::endFrame() {
+    _frameBegun = false;
 }
 
 /**
@@ -57,13 +64,6 @@ void Renderer::drawMesh(const Mesh& mesh, const Material& material, const glm::m
     glBindVertexArray(mesh.getVAO());
     glDrawElements(GL_TRIANGLES, mesh.getIndexCount(), GL_UNSIGNED_INT, 0);
     glBindVertexArray(0);
-}
-
-/**
- * End frame
- */
-void Renderer::endFrame() {
-    _frameBegun = false;
 }
 
 }  // namespace vecthar

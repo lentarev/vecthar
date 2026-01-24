@@ -41,9 +41,17 @@ void Level1::update(float deltaTime, float totalTime) {
     _transform.rotation.y = glm::radians(45.0f) * totalTime;
 }
 
+/**
+ * Draw 3D
+ */
 void Level1::draw(vecthar::Renderer& renderer) {
     renderer.useShaderProgram(_shader->getProgram());
 
     // Drawing a cube using a renderer
     renderer.drawMesh(*_cubeMesh, _cubeMaterial, _transform.getModelMatrix());
 }
+
+/**
+ * Draw UI
+ */
+void Level1::drawUI(vecthar::Renderer& renderer) {}

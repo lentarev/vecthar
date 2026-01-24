@@ -34,6 +34,10 @@ public:
     /// @param renderer
     virtual void draw(Renderer& renderer) = 0;
 
+    /// @brief Render 2D only (optional)
+    /// @param renderer
+    virtual void drawUI(Renderer& renderer) = 0;
+
     /// @brief Input
     /// @param key
     /// @param scancode
