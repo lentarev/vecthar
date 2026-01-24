@@ -28,6 +28,7 @@ public:
 
     void update(float deltaTime, float totalTime) override;
     void draw(vecthar::Renderer& renderer) override;
+    void drawUI(vecthar::Renderer& renderer) override;
     void onKey(int key, int scancode, int action, int mods) override;
 
 private:
