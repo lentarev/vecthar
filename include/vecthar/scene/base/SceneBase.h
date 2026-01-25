@@ -5,13 +5,12 @@
 #ifndef VECTHAR_SCENE_BASE_H
 #define VECTHAR_SCENE_BASE_H
 
-#include <vecthar/scene/base/SceneBase.h>
-
 namespace vecthar {
 
 // forward declaration
 class Engine;
 class Renderer;
+class FPSCounter;
 
 class SceneBase {
 public:
@@ -36,7 +35,7 @@ public:
 
     /// @brief Render 2D only (optional)
     /// @param renderer
-    virtual void drawUI(Renderer& renderer) = 0;
+    virtual void drawUI(Renderer& renderer, const FPSCounter& fps) = 0;
 
     /// @brief Input
     /// @param key

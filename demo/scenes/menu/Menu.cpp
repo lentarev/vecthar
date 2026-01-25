@@ -6,6 +6,7 @@
 #include <vecthar/renderer/Renderer.h>
 #include <vecthar/assets/shader/Shader.h>
 #include <vecthar/input/Key.h>
+#include <vecthar/base/FPSCounter.h>
 
 #include <iostream>
 
@@ -21,7 +22,7 @@ Menu::Menu() {
     _cubeMaterial.baseColor = {1.0f, 0.0f, 0.0f};
 }
 
-Menu::~Menu() {}
+Menu::~Menu() = default;
 
 /**
  * Input
@@ -31,8 +32,6 @@ void Menu::onKey(int key, int scancode, int action, int mods) {
         // Transition to another scene
         this->getEngine()->setCurrentScene(std::make_unique<Level1>());
     }
-
-    // std::cout << "key: " << key << " action: " << action << std::endl;
 }
 
 /**
@@ -54,8 +53,7 @@ void Menu::draw(vecthar::Renderer& renderer) {
 /**
  * Draw UI
  */
-void Menu::drawUI(vecthar::Renderer& renderer) {
-    renderer.drawText("Hello Vecthar", 100, 100, 4.0f, {0.2f, 0.5f, 1.0f});
-
-    // renderer.drawText("A", 100, 100, 1.0f, glm::vec3(1.0f, 1.0f, 1.0f));
+void Menu::drawUI(vecthar::Renderer& renderer, const vecthar::FPSCounter& fps) {
+    std::string text = "FPS: " + std::to_string(fps.getFPS());
+    renderer.drawText(text, 100, 100, 4.0f, {0.2f, 0.5f, 1.0f});
 }

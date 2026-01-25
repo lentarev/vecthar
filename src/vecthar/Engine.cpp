@@ -7,6 +7,7 @@
 #include <vecthar/system/window/Window.h>
 #include <vecthar/renderer/Renderer.h>
 #include <vecthar/camera/Camera.h>
+#include <vecthar/base/FPSCounter.h>
 
 #include <GLFW/glfw3.h>
 #include <iostream>
@@ -79,6 +80,8 @@ void Engine::run() {
     double totalTime = 0.0;  // absolute time of logic
     double accumulator = 0.0;
 
+    FPSCounter fpsCounter;
+
     glEnable(GL_DEPTH_TEST);
     glDepthFunc(GL_LEQUAL);
     glEnable(GL_CULL_FACE);
@@ -122,7 +125,9 @@ void Engine::run() {
         // --- Render UI ---
         if (_currentScene) {
             _renderer->beginUIFrame(_window->getWidth(), _window->getHeight());
-            _currentScene->drawUI(*_renderer);
+
+            fpsCounter.update();  // Updating FPS before rendering
+            _currentScene->drawUI(*_renderer, fpsCounter);
             _renderer->endUIFrame();
         }
 
