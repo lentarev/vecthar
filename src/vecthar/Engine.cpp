@@ -107,6 +107,18 @@ void Engine::setCurrentScene(std::unique_ptr<SceneBase> scene) {
     }
 }
 
+bool Engine::isMousePressed() const {
+    return _mousePressed;
+}
+
+float Engine::getMouseX() const {
+    return static_cast<float>(_mouseX);
+}
+
+float Engine::getMouseY() const {
+    return static_cast<float>(_mouseY);
+}
+
 /// Starting the main loop
 void Engine::run() {
     double lastTime = glfwGetTime();

@@ -31,9 +31,9 @@ public:
     // Set current scene
     void setCurrentScene(std::unique_ptr<SceneBase> scene);
 
-    bool isMousePressed() const { return _mousePressed; }
-    float getMouseX() const { return static_cast<float>(_mouseX); }
-    float getMouseY() const { return static_cast<float>(_mouseY); }
+    bool isMousePressed() const;
+    float getMouseX() const;
+    float getMouseY() const;
 
 private:
     const double TARGET_FPS = 60.0;

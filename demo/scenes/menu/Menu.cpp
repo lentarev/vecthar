@@ -13,7 +13,7 @@
 
 #include "scenes/level1/Level1.h"
 
-Menu::Menu() {
+Menu::Menu() : _startButton(std::make_unique<vecthar::ui::Button>(300, 400, 200, 40, "Start Game")) {
     _shader = std::make_unique<vecthar::Shader>();
     _shader->createProgram(_shader->read("./shaders/basic.vert"), _shader->read("./shaders/basic.frag"));
 
@@ -40,6 +40,18 @@ void Menu::onKey(int key, int scancode, int action, int mods) {
  */
 void Menu::update(float deltaTime, float totalTime) {
     _transform.rotation.y = glm::radians(45.0f) * totalTime;
+
+    vecthar::Engine* engine = this->getEngine();
+
+    if (engine->isMousePressed()) {
+        float mx = engine->getMouseX();
+        float my = engine->getMouseY();
+
+        if (_startButton->contains(mx, my)) {
+            // Transition to another scene
+            engine->setCurrentScene(std::make_unique<Level1>());
+        }
+    }
 }
 
 /**
@@ -56,6 +68,8 @@ void Menu::draw(vecthar::Renderer& renderer) {
  */
 void Menu::drawUI(vecthar::Renderer& renderer, const vecthar::FPSCounter& fps) {
     float UI_TEXT_SCALE = 8.0f / 8.0f;
+
+    _startButton->render(renderer, 3.0f);
 
     std::string text = "FPS: " + std::to_string(fps.getFPS());
     renderer.drawText(text, 10, 10, UI_TEXT_SCALE, {0.2f, 0.5f, 0.0f});
