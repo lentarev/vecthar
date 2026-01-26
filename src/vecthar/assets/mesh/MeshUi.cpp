@@ -3,6 +3,7 @@
 //
 
 #include <vecthar/assets/mesh/MeshUi.h>
+#include <cstddef>
 
 #include <glad/glad.h>
 
