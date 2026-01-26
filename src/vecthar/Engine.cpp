@@ -119,6 +119,10 @@ float Engine::getMouseY() const {
     return static_cast<float>(_mouseY);
 }
 
+Window* Engine::getWindow() const {
+    return _window.get();
+}
+
 /// Starting the main loop
 void Engine::run() {
     double lastTime = glfwGetTime();

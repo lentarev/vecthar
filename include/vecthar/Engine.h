@@ -35,6 +35,8 @@ public:
     float getMouseX() const;
     float getMouseY() const;
 
+    Window* getWindow() const;
+
 private:
     const double TARGET_FPS = 60.0;
     const double FIXED_DELTA_TIME = 1.0 / TARGET_FPS;  // Fixed timestep: 60 updates/sec

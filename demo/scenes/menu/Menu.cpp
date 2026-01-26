@@ -13,7 +13,7 @@
 
 #include "scenes/level1/Level1.h"
 
-Menu::Menu() : _startButton(std::make_unique<vecthar::ui::Button>(300, 400, 200, 40, "Start Game")) {
+Menu::Menu() {
     _shader = std::make_unique<vecthar::Shader>();
     _shader->createProgram(_shader->read("./shaders/basic.vert"), _shader->read("./shaders/basic.frag"));
 
@@ -21,6 +21,9 @@ Menu::Menu() : _startButton(std::make_unique<vecthar::ui::Button>(300, 400, 200,
 
     _cubeMesh = std::make_unique<vecthar::Mesh>(cubeData);
     _cubeMaterial.baseColor = {1.0f, 0.0f, 0.0f};
+
+    // float uiScale = getEngine()->getWindow();
+    // _startButton = std::make_unique<vecthar::ui::Button>(300, 400, 200, 40, "Start Game");
 }
 
 Menu::~Menu() = default;
