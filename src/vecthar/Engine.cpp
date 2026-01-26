@@ -105,6 +105,8 @@ void Engine::run() {
 
         float aspect = static_cast<float>(_window->getWidth()) / _window->getHeight();
 
+        // std::cout << "w: " << _window->getWidth() << " h: " << _window->getHeight() << std::endl;
+
         // --- Logic (fixed timestep) ---
         while (accumulator >= FIXED_DELTA_TIME) {
             if (_currentScene) {

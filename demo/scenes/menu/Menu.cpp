@@ -54,6 +54,8 @@ void Menu::draw(vecthar::Renderer& renderer) {
  * Draw UI
  */
 void Menu::drawUI(vecthar::Renderer& renderer, const vecthar::FPSCounter& fps) {
+    float UI_TEXT_SCALE = 8.0f / 8.0f;
+
     std::string text = "FPS: " + std::to_string(fps.getFPS());
-    renderer.drawText(text, 100, 100, 4.0f, {0.2f, 0.5f, 1.0f});
+    renderer.drawText(text, 10, 10, UI_TEXT_SCALE, {0.2f, 0.5f, 0.0f});
 }
