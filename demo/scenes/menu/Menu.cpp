@@ -8,12 +8,17 @@
 #include <vecthar/input/Key.h>
 #include <vecthar/base/FPSCounter.h>
 #include <vecthar/ui/Button.h>
+#include <vecthar/system/window/Window.h>
 
 #include <iostream>
 
 #include "scenes/level1/Level1.h"
 
-Menu::Menu() {
+Menu::Menu() {}
+
+Menu::~Menu() = default;
+
+void Menu::initialize() {
     _shader = std::make_unique<vecthar::Shader>();
     _shader->createProgram(_shader->read("./shaders/basic.vert"), _shader->read("./shaders/basic.frag"));
 
@@ -22,10 +27,14 @@ Menu::Menu() {
     _cubeMesh = std::make_unique<vecthar::Mesh>(cubeData);
     _cubeMaterial.baseColor = {1.0f, 0.0f, 0.0f};
 
-    _transform.position = glm::vec3(-2.0f, 0.0f, 0.0f);
-}
+    // _transform.position = glm::vec3(-2.0f, 0.0f, 0.0f);
 
-Menu::~Menu() = default;
+    _uiScale = getEngine()->getWindow().getContentScale();
+
+    std::cout << "_uiScale: " << _uiScale << std::endl;
+
+    _startButton = std::make_unique<vecthar::ui::Button>(300 * _uiScale, 400 * _uiScale, 200 * _uiScale, 40 * _uiScale, "Start Game");
+}
 
 /**
  * Input
@@ -69,9 +78,9 @@ void Menu::draw(vecthar::Renderer& renderer) {
  * Draw UI
  */
 void Menu::drawUI(vecthar::Renderer& renderer, const vecthar::FPSCounter& fps) {
-    float UI_TEXT_SCALE = 8.0f / 8.0f;
+    float UI_TEXT_SCALE = _uiScale * 2.0f / _uiScale;
 
-    _startButton->render(renderer, 3.0f);
+    _startButton->render(renderer, 2.0f);
 
     std::string text = "FPS: " + std::to_string(fps.getFPS());
     renderer.drawText(text, 10, 10, UI_TEXT_SCALE, {0.2f, 0.5f, 0.0f});

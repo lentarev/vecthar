@@ -104,6 +104,7 @@ void Engine::setCurrentScene(std::unique_ptr<SceneBase> scene) {
 
     if (_currentScene) {
         _currentScene->setEngine(this);
+        _currentScene->initialize();
     }
 }
 
@@ -119,8 +120,10 @@ float Engine::getMouseY() const {
     return static_cast<float>(_mouseY);
 }
 
-Window* Engine::getWindow() const {
-    return _window.get();
+/// @brief return a reference to the window
+/// @return
+Window& Engine::getWindow() const {
+    return *_window;
 }
 
 /// Starting the main loop

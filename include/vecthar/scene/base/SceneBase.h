@@ -16,6 +16,9 @@ class SceneBase {
 public:
     virtual ~SceneBase() = default;
 
+    /// @brief Initialization
+    virtual void initialize() {}
+
     /// @brief Returns a pointer to the Engine
     /// @return
     Engine* getEngine() const { return _engine; }

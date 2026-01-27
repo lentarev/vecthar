@@ -35,7 +35,9 @@ public:
     float getMouseX() const;
     float getMouseY() const;
 
-    Window* getWindow() const;
+    /// @brief return a reference to the window
+    /// @return
+    Window& getWindow() const;
 
 private:
     const double TARGET_FPS = 60.0;
