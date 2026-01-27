@@ -72,10 +72,6 @@ private:
 
     bool _frameBegun = false;
 
-    // 2D UI
-    GLuint _uiProgram = 0;
-    bool _uiInit = false;
-
     // Text renderer
     std::unique_ptr<vecthar::ui::TextRenderer> _textRenderer;
 

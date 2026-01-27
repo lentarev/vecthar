@@ -30,9 +30,6 @@ void Menu::initialize() {
     // _transform.position = glm::vec3(-2.0f, 0.0f, 0.0f);
 
     _uiScale = getEngine()->getWindow().getContentScale();
-
-    std::cout << "_uiScale: " << _uiScale << std::endl;
-
     _startButton = std::make_unique<vecthar::ui::Button>(300 * _uiScale, 400 * _uiScale, 200 * _uiScale, 40 * _uiScale, "Start Game");
 }
 
