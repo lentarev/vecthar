@@ -28,10 +28,10 @@ void Menu::initialize() {
     // _cubeMaterial.baseColor = {1.0f, 0.0f, 0.0f};
     // _transform.position = glm::vec3(-2.0f, 0.0f, 0.0f);
 
-    auto tower = vecthar::ModelLoader::loadFromFile("./assets/models/tower.gltf");
+    auto tower = vecthar::ModelLoader::loadFromFile("./assets/models/tower.glb");
     _towerMesh = std::make_unique<vecthar::Mesh>(tower.meshes[0]);
 
-    _cubeMaterial.baseColor = {1.0f, 0.0f, 0.0f};
+    _cubeMaterial.baseColor = {0.3f, 0.0f, 0.0f};
     _transform.scale = glm::vec3(0.5f, 0.5f, 0.5f);
     _transform.position = glm::vec3(0.0f, 0.0f, 0.0f);
 
