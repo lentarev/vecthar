@@ -17,7 +17,7 @@ namespace vecthar::ui {
  */
 TextRenderer::TextRenderer() {
     _shader = std::make_unique<vecthar::Shader>();
-    _shader->createProgram(_shader->read("./sys_shaders/ui/text.vert"), _shader->read("./sys_shaders/ui/text.frag"));
+    _shader->createProgram(_shader->read("./core_assets/shaders/ui/text.vert"), _shader->read("./core_assets/shaders/ui/text.frag"));
 
     if (_shader->getProgram() == 0) {
         std::cerr << "Shader failed to load!\n";

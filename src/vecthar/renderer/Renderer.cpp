@@ -17,7 +17,7 @@ namespace vecthar {
  */
 Renderer::Renderer() {
     _textRenderer = std::make_unique<ui::TextRenderer>();
-    _textRenderer->loadFontAtlas("./sys_assets/fonts/font8x8_atlas_1024x8.png");
+    _textRenderer->loadFontAtlas("./core_assets/fonts/font8x8_atlas_1024x8.png");
 }
 
 Renderer::~Renderer() = default;
