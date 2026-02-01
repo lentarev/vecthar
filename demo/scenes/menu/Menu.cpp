@@ -14,27 +14,13 @@
 #include <iostream>
 
 #include "scenes/level1/Level1.h"
+#include "scenes/level2/Level2.h"
 
 Menu::Menu() {}
 
 Menu::~Menu() = default;
 
 void Menu::initialize() {
-    _shader = std::make_unique<vecthar::Shader>();
-    _shader->createProgram(_shader->read("./assets/shaders/basic.vert"), _shader->read("./assets/shaders/basic.frag"));
-
-    // vecthar::MeshData cubeData = vecthar::Primitive::createCube();
-    // _cubeMesh = std::make_unique<vecthar::Mesh>(cubeData);
-    // _cubeMaterial.baseColor = {1.0f, 0.0f, 0.0f};
-    // _transform.position = glm::vec3(-2.0f, 0.0f, 0.0f);
-
-    auto tower = vecthar::ModelLoader::loadFromFile("./assets/models/tower.glb");
-    _towerMesh = std::make_unique<vecthar::Mesh>(tower.meshes[0]);
-
-    _cubeMaterial.baseColor = {0.3f, 0.0f, 0.0f};
-    _transform.scale = glm::vec3(0.5f, 0.5f, 0.5f);
-    _transform.position = glm::vec3(0.0f, 0.0f, 0.0f);
-
     _uiScale = getEngine()->getWindow().getContentScale();
 
     // Define buttons
@@ -88,8 +74,6 @@ void Menu::onKey(int key, int scancode, int action, int mods) {
  * Update - logic update
  */
 void Menu::update(float deltaTime, float totalTime) {
-    _transform.rotation.y = glm::radians(45.0f) * totalTime;
-
     vecthar::Engine* engine = this->getEngine();
 
     if (engine->isMousePressed()) {
@@ -103,7 +87,7 @@ void Menu::update(float deltaTime, float totalTime) {
 
         if (_startLevel2Button->contains(mx, my)) {
             // Transition to another scene
-            engine->setCurrentScene(std::make_unique<Level1>());
+            engine->setCurrentScene(std::make_unique<Level2>());
         }
     }
 }
@@ -111,12 +95,7 @@ void Menu::update(float deltaTime, float totalTime) {
 /**
  * Draw 3D
  */
-void Menu::draw(vecthar::Renderer& renderer) {
-    renderer.useShaderProgram(_shader->getProgram());
-    // Drawing a cube using a renderer
-    // renderer.drawMesh(*_cubeMesh, _cubeMaterial, _transform.getModelMatrix());
-    renderer.drawMesh(*_towerMesh, _cubeMaterial, _transform.getModelMatrix());
-}
+void Menu::draw(vecthar::Renderer& renderer) {}
 
 /**
  * Draw UI

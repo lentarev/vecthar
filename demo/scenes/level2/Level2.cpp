@@ -1,34 +1,33 @@
-#include "Level1.h"
+//
+// Created by Egor Lentarev on 01.02.2026.
+//
 
+#include "scenes/level2/Level2.h"
 #include <vecthar/Engine.h>
-#include <vecthar/assets/mesh/structures/MeshData.h>
-#include <vecthar/assets/mesh/primitives/Primitive.h>
 #include <vecthar/assets/mesh/Mesh.h>
 #include <vecthar/renderer/Renderer.h>
 #include <vecthar/assets/shader/Shader.h>
 #include <vecthar/input/Key.h>
 #include <vecthar/base/FPSCounter.h>
 #include <vecthar/system/window/Window.h>
+#include <vecthar/assets/model/ModelLoader.h>
 
 #include "scenes/menu/Menu.h"
 
-// Constructor
-Level1::Level1() {}
+Level2::Level2() = default;
 
-// Destructor
-Level1::~Level1() = default;
+Level2::~Level2() = default;
 
-/**
- * Initialize
- */
-void Level1::initialize() {
+void Level2::initialize() {
     _shader = std::make_unique<vecthar::Shader>();
     _shader->createProgram(_shader->read("./assets/shaders/basic.vert"), _shader->read("./assets/shaders/basic.frag"));
 
-    vecthar::MeshData cubeData = vecthar::Primitive::createCube();
+    auto tower = vecthar::ModelLoader::loadFromFile("./assets/models/tower.glb");
+    _towerMesh = std::make_unique<vecthar::Mesh>(tower.meshes[0]);
 
-    _cubeMesh = std::make_unique<vecthar::Mesh>(cubeData);
-    _cubeMaterial.baseColor = {1.0f, 1.0f, 0.0f};
+    _towerMaterial.baseColor = {0.3f, 0.0f, 0.0f};
+    _transform.scale = glm::vec3(0.5f, 0.5f, 0.5f);
+    _transform.position = glm::vec3(0.0f, 0.0f, 0.0f);
 
     _uiScale = getEngine()->getWindow().getContentScale();
 }
@@ -36,7 +35,9 @@ void Level1::initialize() {
 /**
  * Input
  */
-void Level1::onKey(int key, int scancode, int action, int mods) {
+void Level2::onKey(int key, int scancode, int action, int mods) {
+    std::cout << "key: " << key << std::endl;
+
     if (key == vecthar::KEY_ESCAPE && action == 1) {
         // Transition to another scene
         this->getEngine()->setCurrentScene(std::make_unique<Menu>());
@@ -46,24 +47,22 @@ void Level1::onKey(int key, int scancode, int action, int mods) {
 /**
  * Update - logic update
  */
-void Level1::update(float deltaTime, float totalTime) {
+void Level2::update(float deltaTime, float totalTime) {
     _transform.rotation.y = glm::radians(45.0f) * totalTime;
 }
 
 /**
  * Draw 3D
  */
-void Level1::draw(vecthar::Renderer& renderer) {
+void Level2::draw(vecthar::Renderer& renderer) {
     renderer.useShaderProgram(_shader->getProgram());
-
-    // Drawing a cube using a renderer
-    renderer.drawMesh(*_cubeMesh, _cubeMaterial, _transform.getModelMatrix());
+    renderer.drawMesh(*_towerMesh, _towerMaterial, _transform.getModelMatrix());
 }
 
 /**
  * Draw UI
  */
-void Level1::drawUI(vecthar::Renderer& renderer, const vecthar::FPSCounter& fps) {
+void Level2::drawUI(vecthar::Renderer& renderer, const vecthar::FPSCounter& fps) {
     float UI_TEXT_SCALE = _uiScale * 2.0f;
 
     std::string text = "FPS: " + std::to_string(fps.getFPS());
