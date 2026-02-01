@@ -39,7 +39,6 @@ private:
 
     std::unique_ptr<vecthar::Model> _towerModel;
     std::unique_ptr<vecthar::Shader> _shader;
-    vecthar::Material _towerMaterial;
     vecthar::Transform _transform;
 };
 
