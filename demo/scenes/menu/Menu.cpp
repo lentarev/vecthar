@@ -36,7 +36,10 @@ void Menu::initialize() {
     _transform.position = glm::vec3(0.0f, 0.0f, 0.0f);
 
     _uiScale = getEngine()->getWindow().getContentScale();
-    _startButton = std::make_unique<vecthar::ui::Button>();
+
+    // Define buttons
+    _startLevel1Button = std::make_unique<vecthar::ui::Button>();
+    _startLevel2Button = std::make_unique<vecthar::ui::Button>();
 
     onResizeWindow();
 }
@@ -54,11 +57,19 @@ void Menu::onResizeWindow() {
     int w = (logicalW / 2) - 100;  // 400 - 100 = 300
     int h = (logicalH / 2) - 20;   // 300 - 20 = 280
 
-    _startButton->setLabel("Start Game");
-    _startButton->setX(w * _uiScale);
-    _startButton->setY(h * _uiScale);
-    _startButton->setWidth(200 * _uiScale);
-    _startButton->setHeight(40 * _uiScale);
+    // Button - Start Level 1
+    _startLevel1Button->setLabel("Start Level 1");
+    _startLevel1Button->setX(w * _uiScale);
+    _startLevel1Button->setY(h * _uiScale);
+    _startLevel1Button->setWidth(200 * _uiScale);
+    _startLevel1Button->setHeight(40 * _uiScale);
+
+    // Button - Start Level 2
+    _startLevel2Button->setLabel("Start Level 2");
+    _startLevel2Button->setX(w * _uiScale);
+    _startLevel2Button->setY((h + 50) * _uiScale);
+    _startLevel2Button->setWidth(200 * _uiScale);
+    _startLevel2Button->setHeight(40 * _uiScale);
 }
 
 /**
@@ -85,7 +96,12 @@ void Menu::update(float deltaTime, float totalTime) {
         float mx = engine->getMouseX();
         float my = engine->getMouseY();
 
-        if (_startButton->contains(mx, my)) {
+        if (_startLevel1Button->contains(mx, my)) {
+            // Transition to another scene
+            engine->setCurrentScene(std::make_unique<Level1>());
+        }
+
+        if (_startLevel2Button->contains(mx, my)) {
             // Transition to another scene
             engine->setCurrentScene(std::make_unique<Level1>());
         }
@@ -108,7 +124,8 @@ void Menu::draw(vecthar::Renderer& renderer) {
 void Menu::drawUI(vecthar::Renderer& renderer, const vecthar::FPSCounter& fps) {
     float UI_TEXT_SCALE = _uiScale * 2.0f;
 
-    _startButton->render(renderer, UI_TEXT_SCALE);
+    _startLevel1Button->render(renderer, UI_TEXT_SCALE);
+    _startLevel2Button->render(renderer, UI_TEXT_SCALE);
 
     std::string text = "FPS: " + std::to_string(fps.getFPS());
     renderer.drawText(text, 10, 10, UI_TEXT_SCALE, {1.0f, 0.2f, 0.4f});

@@ -109,12 +109,7 @@ void Engine::onMouseButton(int button, int action, double xpos, double ypos) {
 /// @brief Set current scene
 /// @param scene
 void Engine::setCurrentScene(std::unique_ptr<SceneBase> scene) {
-    _currentScene = std::move(scene);
-
-    if (_currentScene) {
-        _currentScene->setEngine(this);
-        _currentScene->initialize();
-    }
+    _pendingScene = std::move(scene);
 }
 
 /// @brief Handles framebuffer size event
@@ -188,6 +183,13 @@ void Engine::run() {
         while (accumulator >= FIXED_DELTA_TIME) {
             if (_currentScene) {
                 _currentScene->update(static_cast<float>(FIXED_DELTA_TIME), static_cast<float>(totalTime));
+            }
+
+            // Проверка отложенной смены сцены
+            if (_pendingScene) {
+                _currentScene = std::move(_pendingScene);
+                _currentScene->setEngine(this);
+                _currentScene->initialize();
             }
 
             totalTime += FIXED_DELTA_TIME;

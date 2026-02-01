@@ -49,7 +49,8 @@ private:
     vecthar::Material _cubeMaterial;
     vecthar::Transform _transform;
 
-    std::unique_ptr<vecthar::ui::Button> _startButton;
+    std::unique_ptr<vecthar::ui::Button> _startLevel1Button;
+    std::unique_ptr<vecthar::ui::Button> _startLevel2Button;
 
     // std::vector<glm::vec3> _positions;
     // float _rotation = 0.0f;
