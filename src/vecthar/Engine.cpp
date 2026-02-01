@@ -167,8 +167,8 @@ void Engine::run() {
         const double currentTime = glfwGetTime();
         double frameTime = currentTime - lastTime;
 
-        if (frameTime > 0.25) {
-            frameTime = 0.25;
+        if (frameTime > 0.1) {
+            frameTime = 0.1;
         }
 
         accumulator += frameTime;

@@ -15,7 +15,7 @@
 // Forward declaration of classes
 namespace vecthar {
 
-class Model;
+struct Model;
 class Renderer;
 class Shader;
 class FPSCounter;
